@@ -1,0 +1,1 @@
+document.getElementById('tgTest').onclick=async()=>{const el=document.getElementById('tgStatus');el.textContent='שולח...';try{const r=await chrome.runtime.sendMessage({type:'TELEGRAM_TEST'});el.textContent=r?.ok?'הודעת בדיקה נשלחה':('שגיאה: '+(r?.error||'unknown'));}catch(e){el.textContent=e.message;}};

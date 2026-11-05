@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Mesos Deals Only V16",
+  "version": "16.0.0",
+  "description": "Deals-only Telegram alerts with item listing cards and net profit",
+  "permissions": [
+    "storage",
+    "tabs",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://api.telegram.org/*",
+    "https://mesos.watch/*",
+    "https://www.mesos.watch/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mesos.watch/*",
+        "https://www.mesos.watch/*"
+      ],
+      "js": [
+        "keep-visible.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://mesos.watch/*",
+        "https://www.mesos.watch/*"
+      ],
+      "js": [
+        "content.js",
+        "automation.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
+}
